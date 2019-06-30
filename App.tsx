@@ -95,7 +95,7 @@ const DashboardStackNavigator = createStackNavigator(
   {
     defaultNavigationOptions: ({ navigation }) => {
       return {
-        headerRight: <Button title="MENU" onPress={() => navigation.openDrawer()} name="md-menu" size={30} />
+        headerRight: <Button title="MENU" onPress={() => navigation.openDrawer()} />
       };
     }
   }
