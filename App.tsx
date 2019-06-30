@@ -9,7 +9,7 @@
 import React from "react";
 import { Component } from "react";
 import { Platform, StyleSheet, Text, View, Button } from "react-native";
-import { createSwitchNavigator, createAppContainer, createDrawerNavigator, createBottomTabNavigator, createStackNavigator } from "react-navigation";
+import { createSwitchNavigator, createAppContainer, createDrawerNavigator, createStackNavigator, NavigationContainer } from "react-navigation";
 
 const instructions = Platform.select({
   ios: "Press Cmd+R to reload,\n" + "Cmd+D or shake for dev menu",
@@ -39,20 +39,21 @@ class DashboardScreen extends Component {
     return (
       <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
         <Text>DashboardScreen</Text>
+        <Button onPress={() => this.props.navigation.navigate("AddContent")} title="Add Content" />
+      </View>
+    );
+  }
+}
+class AddContentScreen extends Component {
+  render() {
+    return (
+      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+        <Text>AddContentScreen</Text>
       </View>
     );
   }
 }
 
-class Feed extends Component {
-  render() {
-    return (
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-        <Text>Feed</Text>
-      </View>
-    );
-  }
-}
 class Settings extends Component {
   render() {
     return (
@@ -73,24 +74,12 @@ class Profile extends Component {
   }
 }
 
-const DashboardTabNavigator = createBottomTabNavigator(
+const DashboardStackNavigator: NavigationContainer = createStackNavigator(
   {
-    Feed,
-    Profile,
-    Settings
-  },
-  {
-    navigationOptions: ({ navigation }) => {
-      const { routeName } = navigation.state.routes[navigation.state.index];
-      return {
-        headerTitle: routeName
-      };
-    }
-  }
-);
-const DashboardStackNavigator = createStackNavigator(
-  {
-    DashboardTabNavigator: DashboardTabNavigator
+    Home: DashboardScreen,
+    AddContent: AddContentScreen,
+    Profile: Profile,
+    Settings: Settings
   },
   {
     defaultNavigationOptions: ({ navigation }) => {
@@ -100,10 +89,16 @@ const DashboardStackNavigator = createStackNavigator(
     }
   }
 );
-const AppDrawerNavigator = createDrawerNavigator(
+const AppDrawerNavigator: NavigationContainer = createDrawerNavigator(
   {
-    Dashboard: {
+    Home: {
       screen: DashboardStackNavigator
+    },
+    Profile: {
+      screen: Profile
+    },
+    Settings: {
+      screen: Settings
     }
   },
   {
@@ -111,17 +106,9 @@ const AppDrawerNavigator = createDrawerNavigator(
   }
 );
 
-const AppSwitchNavigator = createSwitchNavigator({
+const AppSwitchNavigator: NavigationContainer = createSwitchNavigator({
   Welcome: { screen: WelcomeScreen },
   Dashboard: { screen: AppDrawerNavigator }
 });
 
-const AppContainer = createAppContainer(AppSwitchNavigator);
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center"
-  }
-});
+const AppContainer: NavigationContainer = createAppContainer(AppSwitchNavigator);
