@@ -8,7 +8,7 @@
 
 import React from "react";
 import { Component } from "react";
-import { Platform, StyleSheet, Text, View, Button } from "react-native";
+import { TouchableOpacity, Image, Text, View, Button } from "react-native";
 import { createSwitchNavigator, createAppContainer, createDrawerNavigator, createStackNavigator, NavigationContainer } from "react-navigation";
 
 export interface Props {
@@ -82,7 +82,11 @@ const DashboardStackNavigator: NavigationContainer = createStackNavigator(
   {
     defaultNavigationOptions: ({ navigation }) => {
       return {
-        headerRight: <Button title="MENU" onPress={() => navigation.openDrawer()} />
+        headerRight: (
+          <TouchableOpacity onPress={() => navigation.openDrawer()}>
+            <Image style={{ width: 40, height: 40 }} source={require("./resources/hamburger_menu.png")} />
+          </TouchableOpacity>
+        )
       };
     }
   }
