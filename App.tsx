@@ -94,7 +94,10 @@ const DashboardStackNavigator: NavigationContainer = createStackNavigator(
 const AppDrawerNavigator: NavigationContainer = createDrawerNavigator(
   {
     Home: {
-      screen: DashboardStackNavigator
+      screen: DashboardStackNavigator,
+      navigationOptions: {
+        drawerLabel: () => null
+      }
     },
     Profile: {
       screen: Profile,
