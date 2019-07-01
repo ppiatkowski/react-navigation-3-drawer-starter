@@ -11,19 +11,17 @@ import { Component } from "react";
 import { Platform, StyleSheet, Text, View, Button } from "react-native";
 import { createSwitchNavigator, createAppContainer, createDrawerNavigator, createStackNavigator, NavigationContainer } from "react-navigation";
 
-const instructions = Platform.select({
-  ios: "Press Cmd+R to reload,\n" + "Cmd+D or shake for dev menu",
-  android: "Double tap R on your keyboard to reload,\n" + "Shake or press menu button for dev menu"
-});
-
-type Props = {};
-export default class App extends Component<Props> {
+export interface Props {
+  navigation: any;
+}
+export interface State {}
+export default class App extends Component<Props, State> {
   render() {
     return <AppContainer />;
   }
 }
 
-class WelcomeScreen extends Component {
+class WelcomeScreen extends Component<Props, State> {
   render() {
     return (
       <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
@@ -34,7 +32,7 @@ class WelcomeScreen extends Component {
   }
 }
 
-class DashboardScreen extends Component {
+class DashboardScreen extends Component<Props, State> {
   render() {
     return (
       <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
@@ -44,7 +42,7 @@ class DashboardScreen extends Component {
     );
   }
 }
-class AddContentScreen extends Component {
+class AddContentScreen extends Component<Props, State> {
   render() {
     return (
       <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
@@ -54,7 +52,7 @@ class AddContentScreen extends Component {
   }
 }
 
-class Settings extends Component {
+class Settings extends Component<Props, State> {
   render() {
     return (
       <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
@@ -64,7 +62,7 @@ class Settings extends Component {
   }
 }
 
-class Profile extends Component {
+class Profile extends Component<Props, State> {
   render() {
     return (
       <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
