@@ -97,10 +97,16 @@ const AppDrawerNavigator: NavigationContainer = createDrawerNavigator(
       screen: DashboardStackNavigator
     },
     Profile: {
-      screen: Profile
+      screen: Profile,
+      navigationOptions: {
+        drawerLabel: "Edit Profile"
+      }
     },
     Settings: {
-      screen: Settings
+      screen: Settings,
+      navigationOptions: {
+        drawerLabel: "Settings"
+      }
     }
   },
   {
